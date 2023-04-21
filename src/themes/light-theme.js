@@ -19,6 +19,11 @@ export const lightTheme = createTheme({
   },
 
   components: {
-     
+    MuiAppBar: {
+      defaultProps: {},
+      styleOverrides: {
+
+      }
+    }
   }
 });
