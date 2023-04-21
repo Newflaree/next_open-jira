@@ -1,9 +1,10 @@
 import { Inter } from 'next/font/google';
+import { Typography } from '@mui/material';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function HomePage() {
   return (
-    <h1>Hello World</h1>
+    <Typography>Hello World</Typography>
   );
 }
