@@ -5,6 +5,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function HomePage() {
   return (
-    <Typography>Hello World</Typography>
+    <Typography variant='h1' color='primary'>Hello World</Typography>
   );
 }
