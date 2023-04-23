@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Box } from '@mui/material';
-import {NavBar} from '../ui';
+import { NavBar, SideBar } from '../ui';
 
 export const MainLayout = ({ title = 'OpenJira', children }) => {
   return (
@@ -14,7 +14,7 @@ export const MainLayout = ({ title = 'OpenJira', children }) => {
       </Head>
 
       <NavBar />
-      { /* Sidebar */ }
+      <SideBar />
 
       <Box
         sx={{
