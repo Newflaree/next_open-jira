@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 // Layouts
 import { MainLayout } from '@/components/layouts';
-import {EntryList} from '@/components/ui';
+import {EntryList, NewEntry} from '@/components/ui';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,6 +32,7 @@ export default function HomePage() {
           >
             <CardHeader title='Pendientes' />
 
+            <NewEntry />
             <EntryList status='pending' />
           </Card>
         </Grid>
