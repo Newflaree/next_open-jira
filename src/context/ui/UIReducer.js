@@ -18,6 +18,18 @@ export const uiReducer = ( state, action ) => {
         isAddingEntry: action.payload
       };
 
+    case 'UI-StartDragging':
+      return {
+        ...state,
+        isDragging: true
+      };
+
+    case 'UI-EndDragging':
+      return {
+        ...state,
+        isDragging: false
+      };
+
     default: 
       return state;
   }

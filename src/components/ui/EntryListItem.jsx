@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import {
   Card,
   CardActionArea,
@@ -5,22 +6,27 @@ import {
   CardContent,
   Typography
 } from '@mui/material';
+import { UIContext } from '@/context/ui';
 
 
 export const EntryListItem = ({ entry }) => {
+
+  const { startDragging, endDragging } = useContext( UIContext );
+
   const onDragStart = ( event ) => {
     event.dataTransfer.setData( 'text', entry._id );
-    // TODO: Modificar el estado para indeicar que estoy haciendo drag
+    startDragging();
   }
 
   const onDragEnd = () => {
-    // TODO: Cancelar onDrag
+    endDragging();
   }
 
   return (
     <Card
       draggable
       onDragStart={ onDragStart }
+      onDragEnd={ onDragEnd }
       sx={{
         marginBottom: 1
       }}
