@@ -32,7 +32,7 @@ export default function HomePage() {
           >
             <CardHeader title='Pendientes' />
 
-            <EntryList />
+            <EntryList status='pending' />
           </Card>
         </Grid>
         { /* GridItem */ }
@@ -49,7 +49,7 @@ export default function HomePage() {
           >
             <CardHeader title='En Progreso' />
 
-            <EntryList />
+            <EntryList status='in-progress' />
           </Card>
         </Grid>
         { /* GridItem */ }
@@ -66,7 +66,7 @@ export default function HomePage() {
           >
             <CardHeader title='Terminadas' />
 
-            <EntryList />
+            <EntryList status='finished' />
           </Card>
         </Grid>
         { /* GridItem */ }

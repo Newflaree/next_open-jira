@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 
 
-export const EntryListItem = () => {
+export const EntryListItem = ({ entry }) => {
   return (
     <Card
       sx={{
@@ -21,7 +21,7 @@ export const EntryListItem = () => {
               whiteSpace: 'pre-line'
             }}
           >
-            Esto es la descipción
+            { entry.description }
           </Typography>
         </CardContent>
 
