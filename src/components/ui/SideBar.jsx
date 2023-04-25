@@ -11,7 +11,9 @@ import {
 } from '@mui/material';
 import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
+// Context
 import { UIContext } from '@/context/ui';
+
 
 const menuItems = [
   'Inbox',
@@ -21,13 +23,13 @@ const menuItems = [
 ];
 
 export const SideBar = () => {
-  const { sidemenuOpen } = useContext( UIContext );
+  const { sidemenuOpen, closeSideMenu } = useContext( UIContext );
 
   return (
     <Drawer
       anchor='left'
       open={ sidemenuOpen }
-      onClose={ () => console.log( 'Closing' ) }
+      onClose={ closeSideMenu }
     >
       <Box
         sx={{ width: 250 }}
@@ -44,7 +46,7 @@ export const SideBar = () => {
 
         <List>
           {
-            menuItems.map( (text, index) => (
+            menuItems.map( ( text, index ) => (
               <ListItem
                 button
                 key={ text }
