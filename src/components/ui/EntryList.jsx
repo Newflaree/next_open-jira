@@ -8,10 +8,21 @@ export const EntryList = ({ status }) => {
   const { entries } = useContext( EntriesContext );
 
   const entriesByStatus = useMemo( () => entries.filter( entry => entry.status === status ), [ entries ] );
+
+  const allowDrop = ( event ) => {
+    event.preventDefault();
+  }
+
+  const onDropEntry = ( event ) => {
+    const id = event.dataTransfer.getData( 'text' );
+  }
     
 
   return (
-    <div>
+    <div
+      onDrop={ onDropEntry }
+      onDragOver={ allowDrop }
+    >
       <Paper
         sx={{
           height: 'calc( 100vh - 180px )',

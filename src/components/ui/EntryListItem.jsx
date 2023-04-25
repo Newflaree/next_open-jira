@@ -8,8 +8,19 @@ import {
 
 
 export const EntryListItem = ({ entry }) => {
+  const onDragStart = ( event ) => {
+    event.dataTransfer.setData( 'text', entry._id );
+    // TODO: Modificar el estado para indeicar que estoy haciendo drag
+  }
+
+  const onDragEnd = () => {
+    // TODO: Cancelar onDrag
+  }
+
   return (
     <Card
+      draggable
+      onDragStart={ onDragStart }
       sx={{
         marginBottom: 1
       }}
