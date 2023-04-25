@@ -1,8 +1,9 @@
 export const entriesReducer = ( state, action ) => {
-  switch ( action ) {
-    case '[ENTRIES]: pending':
+  switch ( action.type ) {
+    case '[ENTRY] Add-Entry':
       return {
-        ...state
+        ...state,
+        entries: [ ...state.entries, action.payload ]
       }
 
     default:
