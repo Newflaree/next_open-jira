@@ -42,13 +42,17 @@ export const EntriesProvider = ({ children }) => {
     dispatch({ type: '[ENTRY] Add-Entry', payload: newEntry });
   }
 
+  const updateEntry = ( entry ) => {
+    dispatch({ type: '[ENTRY] Entry-Updated', payload: entry });
+  }
 
   return (
     <EntriesContext.Provider
       value={{
         ...state,
         // Methods
-        addNewEntry
+        addNewEntry,
+        updateEntry
       }}
     >
       { children }

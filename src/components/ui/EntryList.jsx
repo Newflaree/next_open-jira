@@ -10,7 +10,7 @@ import styles from './EntryList.module.css';
 
 
 export const EntryList = ({ status }) => {
-  const { entries } = useContext( EntriesContext );
+  const { entries, updateEntry } = useContext( EntriesContext );
   const { isDragging, endDragging } = useContext( UIContext );
 
   const entriesByStatus = useMemo( () => entries.filter( entry => entry.status === status ), [ entries ] );
@@ -21,6 +21,14 @@ export const EntryList = ({ status }) => {
 
   const onDropEntry = ( event ) => {
     const id = event.dataTransfer.getData( 'text' );
+    const entry = entries.find( entry => entry._id === id );
+
+    if ( !entry ) return;
+
+    entry.status = status;
+
+    updateEntry( entry );
+    endDragging();
   }
     
 
