@@ -1,5 +1,4 @@
-
-export const UIReducer = ( state, action ) => {
+export const uiReducer = ( state, action ) => {
   switch ( action ) {
     case 'UI-OpenSidebar':
       return {
