@@ -1,6 +1,6 @@
 export const entriesReducer = ( state, action ) => {
   switch ( action ) {
-    case '[ENTRIES]: ActionName':
+    case '[ENTRIES]: pending':
       return {
         ...state
       }

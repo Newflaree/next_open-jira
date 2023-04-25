@@ -1,8 +1,5 @@
 import { useReducer } from 'react';
-// Context
-import { UIContext } from './UIContext';
-// Reducer
-import { uiReducer } from './UIReducer';
+import { UIContext, uiReducer } from './';
 
 
 const UI_INITIAL_STATE = {
