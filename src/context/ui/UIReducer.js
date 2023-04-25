@@ -1,5 +1,5 @@
 export const uiReducer = ( state, action ) => {
-  switch ( action ) {
+  switch ( action.type ) {
     case 'UI-OpenSidebar':
       return {
         ...state,
@@ -10,6 +10,12 @@ export const uiReducer = ( state, action ) => {
       return {
         ...state,
         sidemenuOpen: false
+      };
+
+    case 'UI-IsAddingEntry':
+      return {
+        ...state,
+        isAddingEntry: action.payload
       };
 
     default: 
