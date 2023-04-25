@@ -34,7 +34,7 @@ export const SideBar = () => {
           }}
         >
           <Typography variant='h4'>
-            Manú
+            Menú
           </Typography>
         </Box>
 
