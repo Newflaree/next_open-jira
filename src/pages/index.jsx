@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 // Layouts
 import { MainLayout } from '@/components/layouts';
+import {EntryList} from '@/components/ui';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,10 +32,7 @@ export default function HomePage() {
           >
             <CardHeader title='Pendientes' />
 
-            <CardContent>
-              { /* Agregar una nueva entrada */ }
-              { /* Listado de las entradas */ }
-            </CardContent>
+            <EntryList />
           </Card>
         </Grid>
         { /* GridItem */ }
@@ -50,6 +48,8 @@ export default function HomePage() {
             }}
           >
             <CardHeader title='En Progreso' />
+
+            <EntryList />
           </Card>
         </Grid>
         { /* GridItem */ }
@@ -65,6 +65,8 @@ export default function HomePage() {
             }}
           >
             <CardHeader title='Terminadas' />
+
+            <EntryList />
           </Card>
         </Grid>
         { /* GridItem */ }
