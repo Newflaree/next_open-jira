@@ -17,8 +17,15 @@ export const EntriesProvider = ({ children }) => {
     dispatch({ type: '[ENTRY] Add-Entry', payload: data.newEntry });
   }
 
-  const updateEntry = ( entry ) => {
-    dispatch({ type: '[ENTRY] Entry-Updated', payload: entry });
+  const updateEntry = async ( entry ) => {
+    console.log( entry );
+    try {
+      const { data } = await entriesApi.put( `/entries/${ entry._id }`, { description: entry.description, status: entry.status } );
+
+      dispatch({ type: '[ENTRY] Entry-Updated', payload: data.entryUpdated });
+    } catch ( error ) {
+      console.log( `${ '[ETRIES-PROVIDER.UPDATE-ENTRY]' }: ${ error }` );
+    }
   }
 
   const refreshEntries = async () => {
