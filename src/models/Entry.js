@@ -5,7 +5,7 @@ const entrySchema = new Schema({
     type: String,
     required: true
   },
-  createAt: {
+  createdAt: {
     type: Number,
   },
   status: {
@@ -13,7 +13,8 @@ const entrySchema = new Schema({
     enum: {
       values: [ 'pending', 'in-progress', 'finished' ],
       message: '{VALUE} no es un estado permitido'
-    }
+    },
+    default: 'pending'
   }
 });
 
