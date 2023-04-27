@@ -1,5 +1,5 @@
 // React
-import { useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 // Material UI
 import {
   Button,
@@ -19,16 +19,19 @@ import {
 // Material Icons
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
+// Context
+import {EntriesContext} from '@/context/entries';
+// Database
+import { dbEntries } from '@/database';
 // Layouts
 import { MainLayout } from '@/components/layouts';
-import { dbEntries } from '@/database';
 
 
 const validStatus = [ 'pending', 'in-progress', 'finished' ];
 
 const EntryPage = ({ entry }) => {
+  const { updateEntry } = useContext( EntriesContext )
 
-  console.log({ entry });
   const [ inputValue, setInputValue ] = useState( entry.description );
   const [ status, setStatus ] = useState( entry.status );
   const [ touched, setTouced ] = useState( false );
@@ -46,7 +49,15 @@ const EntryPage = ({ entry }) => {
   }
 
   const onSave = () => {
-    console.log({ inputValue, status });
+    if ( inputValue.trim().length === 0 ) return;
+
+    const updatedEntry = {
+      ...entry,
+      status,
+      description: inputValue
+    }
+
+    updateEntry( updatedEntry, true );
   }
 
   return (
