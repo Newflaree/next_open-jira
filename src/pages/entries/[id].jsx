@@ -21,11 +21,13 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 // Layouts
 import { MainLayout } from '@/components/layouts';
+import { isValidObjectId } from 'mongoose';
 
 
 const validStatus = [ 'pending', 'in-progress', 'finished' ];
 
-const EntryPage = () => {
+const EntryPage = ( props ) => {
+  console.log({ props });
   const [ inputValue, setInputValue ] = useState( '' );
   const [ status, setStatus ] = useState( 'pending' );
   const [ touched, setTouced ] = useState( false );
@@ -134,5 +136,30 @@ const EntryPage = () => {
     </MainLayout>
   );
 }
+
+/* ========================
+ *          Server
+ * ========================*/
+export const getServerSideProps = async ({ params }) => {
+  const { id } = params;
+
+  
+  if ( !isValidObjectId( id ) ) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+
+  return {
+    props: {
+      id
+    }
+  }
+}
+
 
 export default EntryPage;
