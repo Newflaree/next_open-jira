@@ -1,7 +1,12 @@
+// React
 import { useContext } from 'react';
+// Next.js
+import NextLink from 'next/link';
+// Material UI
 import {
   AppBar,
   IconButton,
+  Link,
   Toolbar,
   Typography
 } from '@mui/material';
@@ -24,7 +29,17 @@ import { UIContext } from '@/context/ui';
           <MenuOutlinedIcon />
         </IconButton>
 
-        <Typography variant='h6'>OpenJira</Typography>
+        <NextLink
+          href='/'
+          passHref
+        >
+          <Link
+            underline='none'
+            color='white'
+          >
+            <Typography variant='h6'>OpenJira</Typography>
+          </Link>
+        </NextLink>
       </Toolbar>
     </AppBar>
   );

@@ -1,4 +1,8 @@
+// React
 import { useContext } from 'react';
+// Next.js
+import {useRouter} from 'next/router';
+// Material UI
 import {
   Card,
   CardActionArea,
@@ -6,12 +10,14 @@ import {
   CardContent,
   Typography
 } from '@mui/material';
+// Context
 import { UIContext } from '@/context/ui';
 
 
 export const EntryListItem = ({ entry }) => {
 
   const { startDragging, endDragging } = useContext( UIContext );
+  const router = useRouter();
 
   const onDragStart = ( event ) => {
     event.dataTransfer.setData( 'text', entry._id );
@@ -22,8 +28,13 @@ export const EntryListItem = ({ entry }) => {
     endDragging();
   }
 
+  const onClick = () => {
+    router.push( `/entries/${ entry._id }` );
+  }
+
   return (
     <Card
+      onClick={ onClick }
       draggable
       onDragStart={ onDragStart }
       onDragEnd={ onDragEnd }

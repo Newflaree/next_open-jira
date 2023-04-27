@@ -22,6 +22,7 @@ import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 // Layouts
 import { MainLayout } from '@/components/layouts';
 import { isValidObjectId } from 'mongoose';
+import {dbEntries} from '@/database';
 
 
 const validStatus = [ 'pending', 'in-progress', 'finished' ];
@@ -143,8 +144,9 @@ const EntryPage = ( props ) => {
 export const getServerSideProps = async ({ params }) => {
   const { id } = params;
 
+  const entry = await dbEntries.getEntryById( id );
   
-  if ( !isValidObjectId( id ) ) {
+  if ( !entry ) {
     return {
       redirect: {
         destination: '/',
@@ -153,10 +155,9 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
 
-
   return {
     props: {
-      id
+      entry
     }
   }
 }
