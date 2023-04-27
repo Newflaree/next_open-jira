@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import { db } from "@/database";
-import { Entry } from "@/models";
+import mongoose from 'mongoose';
+import { db } from '@/database';
+import { Entry } from '@/models';
 
 
 export default function handler( req, res ) {
@@ -15,13 +15,13 @@ export default function handler( req, res ) {
 
   switch ( req.method ) {
     case 'GET':
-      return getEntryById( res, id )
+      return getEntryById( res, id );
 
     case 'PUT':
-      return updateEntryById( req, res, id )
+      return updateEntryById( req, res, id );
 
     case 'DELETE':
-      return deleteEntryById( req, res, id )
+      return deleteEntryById( req, res, id );
 
     default:
       return res.status( 400 ).json({

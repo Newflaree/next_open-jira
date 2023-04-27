@@ -1,16 +1,14 @@
-import { db } from "@/database";
-import { Entry } from "@/models";
+import { db } from '@/database';
+import { Entry } from '@/models';
+
 
 export default function handler( req, res ) {
   switch ( req.method ) {
     case 'GET':
-      return getEntries( res )
+      return getEntries( res );
 
     case 'POST':
-      return createEntry( req, res )
-
-    case 'PUT':
-      return updateEntry( req, res )
+      return createEntry( req, res );
 
     default:
       return res.status( 400 ).json({
