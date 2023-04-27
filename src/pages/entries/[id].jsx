@@ -21,16 +21,16 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 // Layouts
 import { MainLayout } from '@/components/layouts';
-import { isValidObjectId } from 'mongoose';
-import {dbEntries} from '@/database';
+import { dbEntries } from '@/database';
 
 
 const validStatus = [ 'pending', 'in-progress', 'finished' ];
 
-const EntryPage = ( props ) => {
-  console.log({ props });
-  const [ inputValue, setInputValue ] = useState( '' );
-  const [ status, setStatus ] = useState( 'pending' );
+const EntryPage = ({ entry }) => {
+
+  console.log({ entry });
+  const [ inputValue, setInputValue ] = useState( entry.description );
+  const [ status, setStatus ] = useState( entry.status );
   const [ touched, setTouced ] = useState( false );
 
   const isNotValid = useMemo( () => {
@@ -50,7 +50,7 @@ const EntryPage = ( props ) => {
   }
 
   return (
-    <MainLayout title='... ....'>
+    <MainLayout title={ inputValue.substring( 0, 20 ) + '...' }>
       <Grid
         container
         justifyContent='center'
@@ -66,8 +66,8 @@ const EntryPage = ( props ) => {
         >
           <Card>
             <CardHeader
-              title={ `Entrada: ${ inputValue }` }
-              subheader={ `Creada hace: ... minutos` }
+              title={ `Entrada: ` }
+              subheader={ `Creada hace: ${ entry.createdAt } minutos` }
             />
               <CardContent>
                 <TextField
