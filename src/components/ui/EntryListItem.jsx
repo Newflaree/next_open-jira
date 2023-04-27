@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 // Context
 import { UIContext } from '@/context/ui';
+// Utils
+import { dateFuncions } from '@/utils';
 
 
 export const EntryListItem = ({ entry }) => {
@@ -61,7 +63,7 @@ export const EntryListItem = ({ entry }) => {
           }}
         >
           <Typography variant='body2'>
-            hace 30 minutos
+            { dateFuncions.getFormatDistanceToNow( entry.createdAt ) }
           </Typography>
         </CardActions>
       </CardActionArea>

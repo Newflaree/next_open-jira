@@ -20,11 +20,12 @@ import {
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 // Context
-import {EntriesContext} from '@/context/entries';
+import { EntriesContext } from '@/context/entries';
 // Database
 import { dbEntries } from '@/database';
 // Layouts
 import { MainLayout } from '@/components/layouts';
+import {dateFuncions} from '@/utils';
 
 
 const validStatus = [ 'pending', 'in-progress', 'finished' ];
@@ -78,7 +79,7 @@ const EntryPage = ({ entry }) => {
           <Card>
             <CardHeader
               title={ `Entrada: ` }
-              subheader={ `Creada hace: ${ entry.createdAt } minutos` }
+              subheader={ dateFuncions.getFormatDistanceToNow( entry.createdAt ) }
             />
               <CardContent>
                 <TextField
