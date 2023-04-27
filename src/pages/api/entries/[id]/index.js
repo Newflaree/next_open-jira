@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { db } from "@/database";
 import { Entry } from "@/models";
 
+
 export default function handler( req, res ) {
   const { id } = req.query;
 
@@ -14,7 +15,7 @@ export default function handler( req, res ) {
 
   switch ( req.method ) {
     case 'GET':
-      return getEntryById( res, req, id )
+      return getEntryById( res, id )
 
     case 'PUT':
       return updateEntryById( req, res, id )
@@ -29,7 +30,33 @@ export default function handler( req, res ) {
   }
 }
 
-const getEntryById = async ( req, res, id ) => {
+const getEntryById = async ( res, id ) => {
+  try {
+    await db.connect();
+    const currentEntry = await Entry.findById( id );
+    await db.disconnect();
+
+    if ( !currentEntry ) {
+      return res.status( 400 ).json({
+        ok: false,
+        msg: 'No existe un usuario con ese id'
+      });
+    }
+
+    res.status( 200 ).json({
+      ok: true,
+      currentEntry
+    });
+
+  } catch ( error ) {
+    await db.disconnect();
+    console.log( `${ '[CONTROLLER.GET-ENTRY-BY-ID]'.bgRed }: ${ error }`  );
+
+    res.status( 500 ).json({
+      ok: false,
+      msg: 'Something went wrong'
+    });
+  }
 }
 
 const updateEntryById = async ( req, res, id ) => {
@@ -65,7 +92,7 @@ const updateEntryById = async ( req, res, id ) => {
 
   } catch ( error ) {
     await db.disconnect();
-    console.log( `${ '[CONTROLLER.UPDATE-ENTRY]'.bgRed }: ${ error }`  );
+    console.log( `${ '[CONTROLLER.UPDATE-ENTRY-BY-ID]'.bgRed }: ${ error }`  );
 
     res.status( 500 ).json({
       ok: false,
@@ -75,4 +102,24 @@ const updateEntryById = async ( req, res, id ) => {
 }
 
 const deleteEntryById = async ( req, res, id ) => {
+  try {
+    await db.connect();
+    const currentEntry = await Entry.findById( id )
+    await db.disconnect();
+
+    res.status( 200 ).json({
+      ok: true,
+      currentEntry
+    });
+
+
+  } catch ( error ) {
+    await db.disconnect();
+    console.log( `${ '[CONTROLLER.GET-ENTRY-BY-ID]'.bgRed }: ${ error }`  );
+
+    res.status( 500 ).json({
+      ok: false,
+      msg: 'Something went wrong'
+    });
+  }
 }
