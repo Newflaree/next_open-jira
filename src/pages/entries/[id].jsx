@@ -1,3 +1,5 @@
+// React
+import { useState } from 'react';
 // Material UI
 import {
   Button,
@@ -24,6 +26,22 @@ import { MainLayout } from '@/components/layouts';
 const validStatus = [ 'pending', 'in-progress', 'finished' ];
 
 const EntryPage = () => {
+  const [ inputValue, setInputValue ] = useState( '' );
+  const [ status, setStatus ] = useState( 'pending' );
+  const [ touched, setTouced ] = useState( false );
+
+  const onInputValueChanged = ( event ) => {
+    setInputValue( event.target.value );
+  }
+
+  const onStatusChanged = ( event ) => {
+    setStatus( event.target.value );
+  }
+
+  const onSave = () => {
+    console.log({ inputValue, status });
+  }
+
   return (
     <MainLayout title='... ....'>
       <Grid
@@ -41,7 +59,7 @@ const EntryPage = () => {
         >
           <Card>
             <CardHeader
-              title='Entrada:' 
+              title={ `Entrada: ${ inputValue }` }
               subheader={ `Creada hace: ... minutos` }
             />
               <CardContent>
@@ -49,6 +67,8 @@ const EntryPage = () => {
                   fullWidth
                   placeholder='Actualizar entrada'
                   label='Actualizar entrada'
+                  value={ inputValue }
+                  onChange={ onInputValueChanged }
                   autoFocus
                   multiline
                   sx={{
@@ -59,7 +79,11 @@ const EntryPage = () => {
 
                 <FormControl>Estado: </FormControl>
 
-                <RadioGroup row>
+                <RadioGroup
+                  row
+                  value={ status }
+                  onChange={ onStatusChanged }
+                >
                   {
                     validStatus.map( option => (
                       <FormControlLabel 
@@ -80,6 +104,7 @@ const EntryPage = () => {
                   startIcon={ <SaveOutlinedIcon /> }
                   variant='contained'
                   fullWidth
+                  onClick={ onSave }
                 >
                     Save
                 </Button>
