@@ -1,17 +1,27 @@
 // Material UI
 import {
   Button,
+  capitalize,
   Card,
   CardActions,
   CardContent,
   CardHeader,
+  FormControl,
+  FormControlLabel,
   Grid,
+  IconButton,
+  Radio,
+  RadioGroup,
   TextField
 } from '@mui/material';
 // Material Icons
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 // Layouts
 import { MainLayout } from '@/components/layouts';
+
+
+const validStatus = [ 'pending', 'in-progress', 'finished' ];
 
 const EntryPage = () => {
   return (
@@ -47,21 +57,47 @@ const EntryPage = () => {
                   }}
                 />
 
-                { /* Radio */ }
+                <FormControl>Estado: </FormControl>
 
-                <CardActions>
-                  <Button
-                    startIcon={ <SaveOutlinedIcon /> }
-                    variant='contained'
-                    fullWidth
-                  >
-                      Save
-                  </Button>
-                </CardActions>
+                <RadioGroup row>
+                  {
+                    validStatus.map( option => (
+                      <FormControlLabel 
+                        key={ option }
+                        value={ option }
+                        control={ <Radio /> }
+                        label={ capitalize( option ) }
+                      />
+                    )) 
+                  }
+                </RadioGroup>
+
+                { /* Radio */ }
               </CardContent>
+
+              <CardActions>
+                <Button
+                  startIcon={ <SaveOutlinedIcon /> }
+                  variant='contained'
+                  fullWidth
+                >
+                    Save
+                </Button>
+              </CardActions>
           </Card>
         </Grid>
       </Grid>
+      
+      <IconButton
+        sx={{
+          position: 'fixed',
+          bottom: 30,
+          right: 30,
+          backgroundColor: 'error.dark'
+        }}
+      >
+        <DeleteOutlineOutlinedIcon />
+      </IconButton>
     </MainLayout>
   );
 }
