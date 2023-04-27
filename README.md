@@ -6,13 +6,19 @@ docker-compose up -d
 ```
 * El -d, significa __detached__
 
+## Configurar las variables de entorno
+Renombrar el archivo __.env.example__ a __.env__
 MongoDB URL Local:
 ```
 mongodb://localhost:27017/entriesdb
 ```
 
-## Configurar las variables de entorno
-Renombrar el archivo __.env.example__ a __.env__
+## Reconstruir los node_modules/ y levantar Next
+```
+yarn install
+yarn dev
+```
+
 
 ## Llenar la base de datos con información de prueba
 Llamar a:
