@@ -1,5 +1,5 @@
 // React
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 // Material UI
 import {
   Button,
@@ -29,6 +29,10 @@ const EntryPage = () => {
   const [ inputValue, setInputValue ] = useState( '' );
   const [ status, setStatus ] = useState( 'pending' );
   const [ touched, setTouced ] = useState( false );
+
+  const isNotValid = useMemo( () => {
+    return inputValue.length <= 0 && touched;
+  } , [ inputValue, touched ] );
 
   const onInputValueChanged = ( event ) => {
     setInputValue( event.target.value );
@@ -67,8 +71,11 @@ const EntryPage = () => {
                   fullWidth
                   placeholder='Actualizar entrada'
                   label='Actualizar entrada'
+                  onBlur={ () => setTouced( true ) }
                   value={ inputValue }
+                  helperText={ isNotValid && 'Ingrese un valor' }
                   onChange={ onInputValueChanged }
+                  error={ isNotValid }
                   autoFocus
                   multiline
                   sx={{
@@ -105,6 +112,7 @@ const EntryPage = () => {
                   variant='contained'
                   fullWidth
                   onClick={ onSave }
+                  disabled={ inputValue.length <= 0 }
                 >
                     Save
                 </Button>
